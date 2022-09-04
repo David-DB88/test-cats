@@ -1,28 +1,41 @@
-import {PokemonDispatchType, PokemonType} from "../actions/PokemonActionsType";
+import {
+    categoryIDType,
+    CatsDispatchType,
+    CatType,
+    FAIL_CATS,
+    LOADING_CATS,
+    SUCCESS_CATS
+} from "./../actions/CatActions/CatsActionsType";
 
 interface IDefaultStat {
     loading: boolean,
-    pokemon?: PokemonType
+    cats: CatType[],
+    categoryID?: categoryIDType
 }
 
 const defaultState: IDefaultStat = {
-loading: false
+loading: false,
+    cats: [],
 }
 
-const pokemonReducer =(state:IDefaultStat = defaultState, action: PokemonDispatchType): IDefaultStat=>{
+const catReducer =(state:IDefaultStat = defaultState, action: CatsDispatchType): IDefaultStat=>{
     switch (action.type){
-        case "FAIL_POKEMON":
+        case "LOADING_CATS":
             return {
-                loading: false
+                ...state,
+                loading: true,
             }
-        case "LOADING_POKEMON":
+        case "SUCCESS_CATS":
             return {
-                loading: true
-            }
-        case "SUCCESS_POKEMON":
-            return {
+                ...state,
                 loading: false,
-                pokemon: action.payload
+                cats: state.categoryID !== action.categoryID ? action.payload : [...state.cats, ...action.payload],
+                categoryID: action.categoryID
+            }
+        case "FAIL_CATS":
+            return {
+                ...state,
+                loading: false,
             }
         default:
             return state
@@ -30,4 +43,4 @@ const pokemonReducer =(state:IDefaultStat = defaultState, action: PokemonDispatc
 
 }
 
-export default pokemonReducer
+export default catReducer

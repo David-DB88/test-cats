@@ -1,28 +1,21 @@
 import {Dispatch} from "react";
-import {CatsDispatchType, FAIL_CATS, LOADING_CATS, SUCCESS_CATS} from "./CatsActionsType";
+import {CategoriesDispatchType, FAIL_CATEGORIES, LOADING_CATEGORIES, SUCCESS_CATEGORIES} from "./CategoriesActionsType";
 import axios from "axios";
 
-export const GetCats = (config?: any) => async (dispatch: Dispatch<CatsDispatchType>)=>{
+export const GetCategories = () => async (dispatch: Dispatch<CategoriesDispatchType>)=>{
 
     try{
         dispatch({
-            type: LOADING_CATS
+            type: LOADING_CATEGORIES
         })
-        const res = await axios.get('https://api.thecatapi.com/v1/images/search', config
-            // {
-            // params: {
-            //     limit: 10,
-            //     page: 2,
-            //     category_ids: 1
-            // } }
-        )
+        const res = await axios.get('https://api.thecatapi.com/v1/categories')
         dispatch({
-            type: SUCCESS_CATS,
+            type: SUCCESS_CATEGORIES,
             payload: res.data
         })
     }catch (e){
        dispatch({
-           type: FAIL_CATS
-    })
+           type: FAIL_CATEGORIES
+        })
     }
 }

@@ -1,27 +1,25 @@
-export const LOADING_CATS = "LOADING_CATS"
-export const FAIL_CATS = "FAIL_CATS"
-export const SUCCESS_CATS = "SUCCESS_CATS"
+export const LOADING_CATEGORIES = "LOADING_CATEGORIES"
+export const FAIL_CATEGORIES = "FAIL_CATEGORIES"
+export const SUCCESS_CATEGORIES = "SUCCESS_CATEGORIES"
 
 
-export type CatType = {
+export type CategoriesType = {
     id: string,
-    url: string,
-    width: number,
-    height: number
+    name: string
 }
 
 
 
-export interface catsLoading {
-    type: typeof LOADING_CATS
+export interface categoriesLoading {
+    type: typeof LOADING_CATEGORIES
 }
-export interface catsFail {
-    type: typeof FAIL_CATS
+export interface categoriesFail {
+    type: typeof FAIL_CATEGORIES
 }
-export interface catsSuccess {
-    type: typeof SUCCESS_CATS
-    payload: CatType[]
+export interface categoriesSuccess {
+    type: typeof SUCCESS_CATEGORIES
+    payload: CategoriesType[]
 }
 
 
-export type CatsDispatchType = catsLoading | catsFail | catsSuccess
+export type CategoriesDispatchType = categoriesLoading | categoriesFail | categoriesSuccess

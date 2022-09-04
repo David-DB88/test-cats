@@ -10,17 +10,19 @@ export type CatType = {
     height: number
 }
 
-
-
 export interface catsLoading {
     type: typeof LOADING_CATS
 }
 export interface catsFail {
     type: typeof FAIL_CATS
 }
+export type categoryIDType={
+    category_ids: number | null
+}
 export interface catsSuccess {
     type: typeof SUCCESS_CATS
     payload: CatType[]
+    categoryID: categoryIDType
 }
 
 

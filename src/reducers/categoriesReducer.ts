@@ -1,33 +1,26 @@
-import {
-    CatsDispatchType,
-    catsSuccess,
-    CatType,
-    FAIL_CATS,
-    LOADING_CATS,
-    SUCCESS_CATS
-} from "./../actions/CatActions/CatsActionsType";
+import {CategoriesDispatchType, CategoriesType} from "../actions/Categories/CategoriesActionsType";
 
 interface IDefaultStat {
     loading: boolean,
-    cats?: CatType[]
+    categories?: CategoriesType[]
 }
 
 const defaultState: IDefaultStat = {
 loading: false
 }
 
-const catReducer =(state:IDefaultStat = defaultState, action: CatsDispatchType): IDefaultStat=>{
+const catReducer =(state:IDefaultStat = defaultState, action: CategoriesDispatchType): IDefaultStat=>{
     switch (action.type){
-        case "LOADING_CATS":
+        case "LOADING_CATEGORIES":
             return {
                 loading: false
             }
-        case "SUCCESS_CATS":
+        case "SUCCESS_CATEGORIES":
             return {
                 loading: true,
-                cats: action.payload
+                categories: action.payload
             }
-        case "FAIL_CATS":
+        case "FAIL_CATEGORIES":
             return {
                 loading: false,
             }
